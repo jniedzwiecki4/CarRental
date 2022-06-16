@@ -1,0 +1,11 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace DDD.CarRental.Core.ApplicationLayer.Queries
+{
+    public class GetReservationQuery
+    {
+        public long ReservationId { get; set; }
+    }
+}
