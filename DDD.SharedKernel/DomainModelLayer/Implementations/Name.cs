@@ -12,8 +12,8 @@ namespace DDD.SharedKernel.DomainModelLayer.Implementations
 
         public Name(string firstName, string surname)
         {
-            if (String.IsNullOrEmpty(firstName)) throw new ArgumentNullException("First name is invalid");
-            if (String.IsNullOrEmpty(surname)) throw new ArgumentNullException("Surname is invalid");
+            if (String.IsNullOrEmpty(firstName)) throw new ArgumentNullException("Imie jest niepoprawne");
+            if (String.IsNullOrEmpty(surname)) throw new ArgumentNullException("Nazwisko jest niepoprawne");
 
             this.FirstName = firstName;
             this.Surname = surname;
@@ -32,7 +32,7 @@ namespace DDD.SharedKernel.DomainModelLayer.Implementations
         public override string ToString()
         {
             return String.Format(
-                "firstName:{0};;surname:{1}", FirstName, Surname
+                "Imie:{0};;Nazwisko:{1}", FirstName, Surname
             );
         }
     }

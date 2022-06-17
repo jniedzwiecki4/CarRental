@@ -37,7 +37,7 @@ namespace DDD.CarRental.Core.DomainModelLayer.Models
 
         public void StopRental(DateTime finished, Money price)
         {
-            if (finished < Started) throw new Exception($"Finished time can not be earlier than started");
+            if (finished < Started) throw new Exception($"Błąd techniczny");
 
             this.Finished = finished;
 
@@ -50,7 +50,7 @@ namespace DDD.CarRental.Core.DomainModelLayer.Models
 
         public int GetTimeInMinutes()
         {
-            if (!this.Finished.HasValue) throw new Exception("Not finished rental");
+            if (!this.Finished.HasValue) throw new Exception("Jazda nadal trwa");
 
             return (this.Finished.Value - this.Started).Minutes + (this.Finished.Value - this.Started).Hours*(int)60;
         }

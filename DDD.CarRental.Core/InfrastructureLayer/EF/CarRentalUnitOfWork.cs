@@ -30,25 +30,20 @@ namespace DDD.CarRental.Core.InfrastructureLayer.EF
 
         public void Commit()
         {
-            // select all changed entities
             var entities = _dbContext.ChangeTracker.Entries<Entity>()
                 .Select(x => x.Entity);
 
-            // select all events from entities
             var domainEvents = _dbContext.ChangeTracker.Entries<Entity>()
                 .SelectMany(x => x.Entity.DomainEvents)
                 .OrderBy(e => e.Created)
                 .ToList();
 
-            // publish event
             foreach (dynamic @event in domainEvents)
                 _eventPublisher.Publish(@event);
 
-            // remove events form lists
             foreach (var entity in entities)
                 entity.RemoveAllDomainEvents();
 
-            // save changes to database
             _dbContext.SaveChanges();
         }
 

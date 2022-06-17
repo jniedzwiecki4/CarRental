@@ -12,7 +12,7 @@ namespace DDD.SharedKernel.DomainModelLayer.Implementations
         public string Value { get; private set; }
         public Email(string value)
         {
-            if (!(IsValidEmail(value))) throw new Exception("Invalid email");
+            if (!(IsValidEmail(value))) throw new Exception("Niepoprawny email");
 
             Value = value;
         }

@@ -5,31 +5,6 @@ using System.Text;
 
 namespace DDD.SharedKernel.DomainModelLayer.Implementations
 {
-    // Na podstawie:
-    // https://enterprisecraftsmanship.com/posts/value-object-better-implementation/
-    // https://bottega.com.pl/ddd-cqrs-sample-project
-
-    //public class Color
-    //{
-    //    public int Red { get; private set; }
-    //    public int Green { get; private set; }
-    //    public int Blue { get; private set; }
-
-    //    public Color(int red, int green, int blue)
-    //    {
-    //        Red = red;
-    //        Green = green;
-    //        Blue = blue;
-    //    }
-
-    //    public Color MixIn(Color other)
-    //    {
-    //        return new Color(
-    //            (Red + other.Red)/2, 
-    //            (Green + other.Green)/2, 
-    //            (Blue + other.Blue)/2);
-    //    }
-    //}
 
     public class Money : ValueObject
     {
@@ -41,8 +16,6 @@ namespace DDD.SharedKernel.DomainModelLayer.Implementations
 
         protected Money()
         { }
-
-        //public int Id { get; protected set; }
 
         public Money(decimal amount, string currency)
         {
@@ -66,7 +39,7 @@ namespace DDD.SharedKernel.DomainModelLayer.Implementations
         {
             if (!AreCompatibleCurrencies(m, m2))
             {
-                throw new ArgumentException("Currency mismatch");
+                throw new ArgumentException("Niepoprawna waluta");
             }
             return new Money(m.Amount + m2.Amount, m.Currency);
         }
@@ -75,7 +48,7 @@ namespace DDD.SharedKernel.DomainModelLayer.Implementations
         {
             if (!AreCompatibleCurrencies(m, m2))
             {
-                throw new ArgumentException("Currency mismatch");
+                throw new ArgumentException("Niepoprawna waluta");
             }
             return new Money(m.Amount - m2.Amount, m.Currency);
         }
@@ -94,9 +67,6 @@ namespace DDD.SharedKernel.DomainModelLayer.Implementations
             return new Money(Amount * multiplier, Currency);
         }
 
-        /// <summary>
-        /// Currency is compatible if the same or either money object has zero value.
-        /// </summary>
         private static bool AreCompatibleCurrencies(Money m, Money m2)
         {
             return IsZero(m.Amount) || IsZero(m2.Amount) || m.Currency.Equals(m2.Currency);

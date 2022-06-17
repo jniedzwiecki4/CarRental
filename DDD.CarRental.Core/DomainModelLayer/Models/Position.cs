@@ -42,7 +42,7 @@ namespace DDD.CarRentalLib.DomainModelLayer.Models
         {
             if (p1.Unit != p2.Unit)
             {
-                throw new ArgumentException("Units are not the same.");
+                throw new ArgumentException("Jednostki nie sa takie same");
             }
             return new Distance((decimal)Math.Sqrt(Math.Pow(p1.XPosition - p2.XPosition, 2) + Math.Pow((p1.YPosition - p2.YPosition), 2)), p1.Unit);
         }

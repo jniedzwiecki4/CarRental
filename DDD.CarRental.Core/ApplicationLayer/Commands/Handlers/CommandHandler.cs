@@ -38,12 +38,12 @@ namespace DDD.CarRental.Core.ApplicationLayer.Commands.Handlers
             Car car = _unitOfWork.CarRepository.Get(command.CarId);
             if(car != null)
             {
-                throw new Exception($"Car '{command.CarId}' already exists.");
+                throw new Exception($"Auto '{command.CarId}' już istnieje");
             }
 
             car = _unitOfWork.CarRepository.GetCarByRegistrationNumber(command.RegistrationNumber);
             if(car != null)
-                throw new Exception($"Car '{command.RegistrationNumber}' already exists.");
+                throw new Exception($"Auto '{command.RegistrationNumber}' już istnieje");
 
             car = _carFactory.Create(command.CarId, command.RegistrationNumber, (Status)command._Status, new Distance(command.CurrentDistance), new Money(command.UnitPrice));
             _unitOfWork.CarRepository.Insert(car);
@@ -54,12 +54,12 @@ namespace DDD.CarRental.Core.ApplicationLayer.Commands.Handlers
         {
             Driver driver = _unitOfWork.DriverRepository.Get(command.DriverId);
             if (driver != null)
-                throw new Exception($"Driver '{command.DriverId}' already exists.");
+                throw new Exception($"Kierowca '{command.DriverId}' już istnieje");
 
 
             driver = _unitOfWork.DriverRepository.GetDriverByLicenceNumber(command.LicenceNumber);
             if (driver != null)
-                throw new Exception($"Driver '{command.LicenceNumber}' already exists.");
+                throw new Exception($"Kierowca '{command.LicenceNumber}' już istnieje");
 
             driver = new Driver(command.DriverId, command.LicenceNumber, command.FirstName, command.LastName);
             _unitOfWork.DriverRepository.Insert(driver);
@@ -70,15 +70,15 @@ namespace DDD.CarRental.Core.ApplicationLayer.Commands.Handlers
         {
             Rental rental = _unitOfWork.RentalRepository.Get(command.RentalId);
             if(rental != null)
-                throw new Exception($"Rental '{command.RentalId}' already exists.");
+                throw new Exception($"Wypozyczenie '{command.RentalId}' już istnieje");
 
             Car car = _unitOfWork.CarRepository.Get(command.CarId);
             if(car == null)
-                throw new Exception($"Car '{command.CarId}' does not exist.");
+                throw new Exception($"Auto '{command.CarId}' nie istnieje");
 
             Driver driver = _unitOfWork.DriverRepository.Get(command.DriverId);
             if(driver == null)
-                throw new Exception($"Driver '{command.DriverId}' does not exist.");
+                throw new Exception($"Kierowca '{command.DriverId}' nie istnieje");
 
             rental = _rentalFactory.Create(command.RentalId, command.Started, car, driver);
             rental.RegisterPolicy(_discountPolicyFactory.Create(rental));
@@ -92,16 +92,16 @@ namespace DDD.CarRental.Core.ApplicationLayer.Commands.Handlers
         {
             Rental rental = _unitOfWork.RentalRepository.Get(command.RentalId);
             if(rental == null)
-                throw new Exception($"Rental '{command.RentalId}' does not exist.");
+                throw new Exception($"Wypozyczenie '{command.RentalId}' nie istnieje");
 
 
             Car car = _unitOfWork.CarRepository.Get(rental.CarId);
             if(car == null)
-                throw new Exception($"Car '{rental.CarId}' does not exist.");
+                throw new Exception($"Auto '{rental.CarId}' nie istnieje");
 
             Driver driver = _unitOfWork.DriverRepository.Get(rental.DriverId);
             if (driver == null)
-                throw new Exception($"Driver '{rental.DriverId}' does not exist.");
+                throw new Exception($"Kierowca '{rental.DriverId}' nie istnieje");
 
             rental.StopRental(command.Finished, car.UnitPrice);
             car.Return();

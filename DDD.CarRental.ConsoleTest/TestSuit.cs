@@ -35,7 +35,7 @@ namespace DDD.CarRental.ConsoleTest
             _commandHandler.Execute(new CreateCarCommand()
             {
                 CarId = carId,
-                RegistrationNumber = "KR ABC",
+                RegistrationNumber = "KRK 123",
                 _Status = CreateCarStatus.FREE,
                 XCurrentPosition = 1m,
                 YCurrentPosition = 1m,
@@ -43,18 +43,18 @@ namespace DDD.CarRental.ConsoleTest
                 UnitPrice = 10m
 
             });
-            Console.WriteLine("Samochód utworzony");
+            Console.WriteLine("Auto zostało utworzone");
             var cars = _queryHandler.Execute(new GetAllCarsQuery());
             foreach (var car in cars)
             {
-                Console.WriteLine($"Id samochodu: {car.Id}, Rejestracja: {car.RegistrationNumber}, Status: {car.Status} \r\n");
+                Console.WriteLine($"Id auta: {car.Id}, Numer Rejestracji: {car.RegistrationNumber}, Status: {car.Status} \r\n");
             }
             _commandHandler.Execute(new CreateDriverCommand()
             {
                 DriverId = driver1Id,
                 LicenceNumber = "12345",
-                FirstName = "Jan",
-                LastName = "Kowalski"
+                FirstName = "Adam",
+                LastName = "Adamowicz"
 
             });
 
@@ -62,10 +62,10 @@ namespace DDD.CarRental.ConsoleTest
             {
                 DriverId = driver2Id,
                 LicenceNumber = "54321",
-                FirstName = "Piotr",
-                LastName = "Nowak"
+                FirstName = "Jan",
+                LastName = "Janowski"
             });
-            Console.WriteLine("Dwóch kierowców utworzonych");
+            Console.WriteLine("Utworzono dwóch kierowcow");
             var drivers = _queryHandler.Execute(new GetAllDriversQuery());
             foreach (var driver in drivers)
             {
@@ -78,26 +78,26 @@ namespace DDD.CarRental.ConsoleTest
                 CarId = carId,
                 DriverId = driver1Id
             });
-            Console.WriteLine("Kierowca o id 1 wypożycza samochód");
+            Console.WriteLine("Kierowca 1 wypożycza auto");
             var Rentals = _queryHandler.Execute(new GetAllRentalsQuery());
             foreach (var Rental in Rentals)
             {
-                Console.WriteLine($"Id wypożyczenia: {Rental.Id}, Id kierowcy: {Rental.DriverId}, Rozpoczęcie: {Rental.Started}, Zakończenie: W trakcie jazdy, Do zapłaty: {Rental.Total_Currency} \r\n");
+                Console.WriteLine($"Id wypożyczenia: {Rental.Id}, Id kierowcy: {Rental.DriverId}, Rozpoczęcie: {Rental.Started}, Zakończenie: W trakcie jazdy, Kwota: {Rental.Total_Currency} \r\n");
             }
             _commandHandler.Execute(new ReturnCarCommand()
             {
                 RentalId = rental1Id,
                 Finished = DateTime.Now.AddHours(1).AddMinutes(15)
             });
-            Console.WriteLine("Kierowca o id 1 oddaje samochód");
+            Console.WriteLine("Kierowca 1 oddaje wypozyczone auto");
             Rentals = _queryHandler.Execute(new GetAllRentalsQuery());
             foreach (var Rental in Rentals)
             {
-                Console.WriteLine($"Id wypożyczenia: {Rental.Id}, Id kierowcy: {Rental.DriverId}, Rozpoczęcie: {Rental.Started}, Zakończenie: {Rental.Finished}, Do zapłaty: {Rental.Total_Currency} \r\n");
+                Console.WriteLine($"Id wypożyczenia: {Rental.Id}, Id kierowcy: {Rental.DriverId}, Rozpoczęcie: {Rental.Started}, Zakończenie: {Rental.Finished}, Kwota: {Rental.Total_Currency} \r\n");
             }
  
 
-            Console.WriteLine("Kierowca o id 2 wypożycza samochód");
+            Console.WriteLine("Kierowca 2 wypożycza auto");
             _commandHandler.Execute(new RentCarCommand()
             {
                 RentalId = rental2Id,
@@ -105,11 +105,11 @@ namespace DDD.CarRental.ConsoleTest
                 CarId = carId,
                 DriverId = driver2Id
             });
-            Console.WriteLine("Informacje o samochodzie");
+            Console.WriteLine("Informacje o aucie");
             cars = _queryHandler.Execute(new GetAllCarsQuery());
             foreach (var car in cars)
             {
-                Console.WriteLine($"Id samochodu: {car.Id}, Rejestracja: {car.RegistrationNumber}, Status: {car.Status} \r\n");
+                Console.WriteLine($"Id auta: {car.Id}, Numer Rejestracji: {car.RegistrationNumber}, Status: {car.Status} \r\n");
             }
   
             Rentals = _queryHandler.Execute(new GetAllRentalsQuery());
@@ -122,18 +122,18 @@ namespace DDD.CarRental.ConsoleTest
                 RentalId = rental2Id,
                 Finished = DateTime.Now.AddHours(4).AddMinutes(30)
             });
-            Console.WriteLine("Kierowca o id 2 oddaje samochód");
+            Console.WriteLine("Kierowca 2 wypozyczone auto");
             Rentals = _queryHandler.Execute(new GetAllRentalsQuery());
             foreach (var Rental in Rentals)
             {
-                Console.WriteLine($"Id wypożyczenia: {Rental.Id}, Id kierowcy: {Rental.DriverId}, Rozpoczęcie: {Rental.Started}, Zakończenie: {Rental.Finished}, Do zapłaty: {Rental.Total_Currency} \r\n");
+                Console.WriteLine($"Id wypożyczenia: {Rental.Id}, Id kierowcy: {Rental.DriverId}, Rozpoczęcie: {Rental.Started}, Zakończenie: {Rental.Finished}, Kwota: {Rental.Total_Currency} \r\n");
             }
 
-            Console.WriteLine("Informacje o samochodzie");
+            Console.WriteLine("Informacje o aucie");
             cars = _queryHandler.Execute(new GetAllCarsQuery());
             foreach (var car in cars)
             {
-                Console.WriteLine($"Id samochodu: {car.Id}, Rejestracja: {car.RegistrationNumber}, Status: {car.Status} \r\n");
+                Console.WriteLine($"Id auta: {car.Id}, Rejestracja: {car.RegistrationNumber}, Status: {car.Status} \r\n");
             }
             Console.WriteLine("Dane kierowców");
             drivers = _queryHandler.Execute(new GetAllDriversQuery());

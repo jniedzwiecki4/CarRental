@@ -31,7 +31,6 @@ namespace DDD.CarRental.Core.InfrastructureLayer.EF
             builder.ApplyConfiguration(new PositionConfiguration());
 
 
-            // ToDo: konfiguracja pozostałych klas modelu
         }
     }
 }

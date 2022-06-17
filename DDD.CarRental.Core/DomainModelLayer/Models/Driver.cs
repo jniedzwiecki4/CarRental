@@ -23,7 +23,7 @@ namespace DDD.CarRental.Core.DomainModelLayer.Models
         public Driver(long driverId, string licenceNumber, string firstName, string lastName) 
             : base(driverId)
         {
-            if (string.IsNullOrEmpty(licenceNumber)) throw new ArgumentNullException("Driver licence number is empty");
+            if (string.IsNullOrEmpty(licenceNumber)) throw new ArgumentNullException("Numer rejestracji jest pusty");
 
             this.LicenceNumber = licenceNumber;
             this.FirstName = firstName;

@@ -10,7 +10,7 @@ namespace DDD.SharedKernel.DomainModelLayer.Implementations
         public Price(decimal amount, string currency)
             :base(amount, currency)
         {
-            if (amount < 0) throw new Exception("Price can not be less then zero");
+            if (amount < 0) throw new Exception("Cena nie moze byc mniejsza niz zero");
         }
     }
 }

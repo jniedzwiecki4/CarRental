@@ -29,13 +29,7 @@ namespace DDD.CarRental.Core.DomainModelLayer.Factories
         private void CheckIfCarIsActive(Car car)
         {
             if (car._Status != Car.Status.FREE)
-                throw new Exception($"Car {car.Id} is not free.");
-        }
-
-        private void CheckIfCarIsReserved(Car car)
-        {
-            if (car._Status != Car.Status.RESERVED)
-                throw new Exception($"Car {car.Id} is not reserved.");
+                throw new Exception($"Auto {car.Id} nie jest wolne.");
         }
 
     }

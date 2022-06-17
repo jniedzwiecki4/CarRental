@@ -6,7 +6,6 @@ using System.Text;
 namespace DDD.SharedKernel.DomainModelLayer.Implementations
 {
 
-    // Source: https://enterprisecraftsmanship.com/posts/value-object-better-implementation/
     public abstract class ValueObject
     {
         protected abstract IEnumerable<object> GetEqualityComponents();

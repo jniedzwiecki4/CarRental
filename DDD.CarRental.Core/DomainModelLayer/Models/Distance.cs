@@ -43,7 +43,7 @@ namespace DDD.CarRental.Core.DomainModelLayer.Models
         {
             if (!AreCompatibleCurrencies(m, m2))
             {
-                throw new ArgumentException("Unit mismatch");
+                throw new ArgumentException("Rozne jednostki");
             }
             return new Distance(m.Total + m2.Total, m.Unit);
         }
@@ -52,7 +52,7 @@ namespace DDD.CarRental.Core.DomainModelLayer.Models
         {
             if (!AreCompatibleCurrencies(m, m2))
             {
-                throw new ArgumentException("Unit mismatch");
+                throw new ArgumentException("Rozne jednostki");
             }
             return new Distance( m.Total - m2.Total, m.Unit);
         }

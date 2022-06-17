@@ -11,16 +11,12 @@ namespace DDD.CarRental.Core.InfrastructureLayer.EF.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Rental> rentalConfiguration)
         {
-            // ustawianie klucza głównego
             rentalConfiguration.HasKey(r => r.Id);
 
-            // klucz tabeli nie będzie generowany przez EF
             rentalConfiguration.Property(r => r.Id).ValueGeneratedNever();
 
-            // wykluczenie DomainsEvents z modelu relacyjnego - nie ma potrzeby zapisywania w bazie zdarzeń domenowych
             rentalConfiguration.Ignore(r => r.DomainEvents);
 
-            // ToDo: konfiguracja pozostalych elementów
 
             rentalConfiguration.Property<long>("DriverId").IsRequired();
 

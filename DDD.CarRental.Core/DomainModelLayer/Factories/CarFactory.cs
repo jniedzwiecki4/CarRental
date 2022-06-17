@@ -27,12 +27,12 @@ namespace DDD.CarRental.Core.DomainModelLayer.Factories
 
         private void CheckRegistrationNumber(string registrationNumber)
         {
-            if (string.IsNullOrEmpty(registrationNumber)) throw new ArgumentNullException("Car registration number is empty");
+            if (string.IsNullOrEmpty(registrationNumber)) throw new ArgumentNullException("Numer rejestracji jest pusty");
         }
 
         private void CheckTotalDistance(Distance totalDistance)
         {
-            if (Distance.Zero > totalDistance) throw new ArgumentNullException("Distance can not be below zero");
+            if (Distance.Zero > totalDistance) throw new ArgumentNullException("Odległosc nie moze byc mniejsza niz zero");
         }
 
 
